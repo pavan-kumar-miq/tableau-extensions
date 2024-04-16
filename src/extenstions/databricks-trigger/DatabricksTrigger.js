@@ -18,8 +18,8 @@ function DatabricksTrigger() {
     setEmailData(email);
     setIsTriggered(true);
     tableau.extensions.initializeAsync().then(() => {
-      const worksheetContent = tableau.extensions.worksheetContent;
-      console.log(worksheetContent);
+      // const worksheetContent = tableau.extensions.worksheetContent;
+      // console.log(worksheetContent);
 
       const dashboard = tableau.extensions.dashboardContent.dashboard;
       setDashboard(dashboard.name);
@@ -29,7 +29,7 @@ function DatabricksTrigger() {
       setWorksheets(worksheets);
 
       const filters = dashboard.worksheets[0].getFiltersAsync();
-      console.log(filters);
+      // console.log(filters);
       filters.then((filters) => {
         setFilters(
           filters.map((filter) => {

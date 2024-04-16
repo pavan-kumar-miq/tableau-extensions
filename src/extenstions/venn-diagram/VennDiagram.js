@@ -58,7 +58,7 @@ export const VennDiagram = (props) => {
           .style("stroke", "black");
       })
       .on("mousemove", function (d, i) {
-        console.log(d.pageX, d.pageY);
+        // (d.pageX, d.pageY);
         tooltip
           .text(i.sets.join(" ∩ ") + ": " + i.dataItems.join(", "))
           .style("position", "absolute")
@@ -128,7 +128,7 @@ export const VennDiagram = (props) => {
                       );
                     })
                     .each(function (d) {
-                      console.log(this);
+                      // (this);
                       d3.select(this)
                         .select("path")
                         .style("stroke-width", 3)
@@ -144,7 +144,7 @@ export const VennDiagram = (props) => {
                       let centerX = rect.left + rect.width / 4;
                       let centerY = rect.top + rect.height / 3;
 
-                      console.log(centerX, centerY);
+                      centerX, centerY;
                       tooltip
                         .text(
                           d.sets.join(" ∩ ") + ": " + d.dataItems.join(", ")
