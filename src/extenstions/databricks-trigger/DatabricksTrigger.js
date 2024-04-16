@@ -11,9 +11,11 @@ function DatabricksTrigger() {
   const [filters, setFilters] = useState([]);
   const [email, setEmail] = useState("");
   const [istriggered, setIsTriggered] = useState(false);
+  const [emailData, setEmailData] = useState("");
 
   useEffect(() => {}, []);
   const handleClick = () => {
+    setEmailData(email);
     setIsTriggered(true);
     tableau.extensions.initializeAsync().then(() => {
       const worksheetContent = tableau.extensions.worksheetContent;
@@ -78,6 +80,7 @@ function DatabricksTrigger() {
     setResponse("");
     triggerDatabricksAPI(requestBody).then((response) => {
       setResponse(response.data.trustedTicket);
+      setEmailData("");
     });
   };
   const textFieldProps = {
@@ -91,67 +94,65 @@ function DatabricksTrigger() {
 
   return (
     <>
-      <TextFieldGroup
-        button={
-          <Button
-            kind="outline"
-            density="low"
-            children="Trigger Databricks"
-            onClick={handleClick}
-          />
-        }
-        textField={<TextField kind="outline" {...textFieldProps} />}
-      />
-      {response != "" && (
-        <div
+      <div
+        style={{
+          position: "absolute",
+        }}
+      >
+        <TextFieldGroup
           style={{
-            position: "absolute",
-            marginTop: "30px",
+            margin: "15px",
           }}
-        >
-          <div>Job ran successful.</div>
-          <div>Response(Trusted Ticket): {response}</div>
-          <Link
+          button={
+            <Button
+              kind="outline"
+              density="low"
+              children="Trigger Databricks"
+              onClick={handleClick}
+            />
+          }
+          textField={<TextField kind="outline" {...textFieldProps} />}
+        />
+        {response != "" && (
+          <div
             style={{
-              position: "absolute",
-              marginTop: "30px",
+              margin: "15px",
             }}
-            to="/"
           >
-            <button>Back to Home</button>
-          </Link>
-        </div>
-      )}
-      {response == "" && istriggered && (
-        <div
+            <div>Job ran successful.</div>
+            <div>Response(Trusted Ticket): {response}</div>
+          </div>
+        )}
+        {response == "" && istriggered && (
+          <div
+            style={{
+              margin: "15px",
+            }}
+          >
+            <div>Email: {emailData}</div>
+            <div>Dashboard: {dashboard}</div>
+            <div>Worksheets: {worksheets.join(", ")}</div>
+            <div>
+              Filters:
+              {filters.map((filter, index) => (
+                <div key={index}>{filter}</div>
+              ))}
+            </div>
+            <div style={{ marginTop: "20px" }}>
+              Job Triggered. Waiting for Response...
+            </div>
+          </div>
+        )}
+
+        <Link
           style={{
-            position: "absolute",
-            marginTop: "30px",
+            margin: "15px",
           }}
+          to="/"
         >
-          <div>Email: {email}</div>
-          <div>Dashboard: {dashboard}</div>
-          <div>Worksheets: {worksheets.join(", ")}</div>
-          <div>
-            Filters:
-            {filters.map((filter, index) => (
-              <div key={index}>{filter}</div>
-            ))}
-          </div>
-          <div style={{ marginTop: "20px" }}>
-            Job Triggered. Waiting for Response...
-          </div>
-          <Link
-            style={{
-              position: "absolute",
-              marginTop: "30px",
-            }}
-            to="/"
-          >
-            <button>Back to Home</button>
-          </Link>
-        </div>
-      )}
+          <button>Back to Home</button>
+        </Link>
+      </div>
     </>
   );
 }

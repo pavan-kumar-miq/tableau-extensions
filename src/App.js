@@ -19,14 +19,26 @@ function App() {
         <Route
           path="/"
           element={
-            <>
+            <div
+              style={{
+                position: "absolute",
+                margin: "15px",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
               <Link to="/databricks-trigger">
-                <button>Go to Databricks Trigger</button>
+                <button>Go to Databricks Trigger Extension</button>
               </Link>
-              <Link to="/venn-diagram">
-                <button>Go to Venn Diagram</button>
+              <Link
+                style={{
+                  marginTop: "15px",
+                }}
+                to="/venn-diagram"
+              >
+                <button>Go to Venn Diagram Extension</button>
               </Link>
-            </>
+            </div>
           }
         />
       </Routes>
