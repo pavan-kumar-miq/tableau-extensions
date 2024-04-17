@@ -150,7 +150,7 @@ function DatabricksTrigger() {
           }}
           to="/"
         >
-          <button>Back to Home</button>
+          <Button>Back to Home</Button>
         </Link>
       </div>
     </>

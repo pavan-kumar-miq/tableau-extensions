@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as d3 from "d3";
 import * as venn from "venn.js";
 import { Link } from "react-router-dom";
+import { Button } from "@tableau/tableau-ui";
 
 export const VennDiagram = (props) => {
   const [sets, setSets] = useState([
@@ -168,7 +169,7 @@ export const VennDiagram = (props) => {
         </tbody>
       </table>
       <Link to="/">
-        <button>Back to Home</button>
+        <Button>Back to Home</Button>
       </Link>
     </>
   );

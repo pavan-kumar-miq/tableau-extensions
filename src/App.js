@@ -2,15 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import DatabricksTrigger from "./extenstions/databricks-trigger/DatabricksTrigger";
 import { VennDiagram } from "./extenstions/venn-diagram/VennDiagram";
+import { Button } from "@tableau/tableau-ui";
 
 function App() {
-  const userData = [
-    { userId: 1, audience: "Display" },
-    { userId: 2, audience: "Audio" },
-    { userId: 3, audience: "Audio" },
-    { userId: 1, audience: "Video" },
-    { userId: 2, audience: "Video" },
-  ];
   return (
     <Router>
       <Routes>
@@ -28,7 +22,7 @@ function App() {
               }}
             >
               <Link to="/databricks-trigger">
-                <button>Go to Databricks Trigger Extension</button>
+                <Button>Go to Databricks Trigger Extension</Button>
               </Link>
               <Link
                 style={{
@@ -36,7 +30,7 @@ function App() {
                 }}
                 to="/venn-diagram"
               >
-                <button>Go to Venn Diagram Extension</button>
+                <Button>Go to Venn Diagram Extension</Button>
               </Link>
             </div>
           }
